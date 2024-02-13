@@ -1,3 +1,21 @@
+String numberedInput = "Задание " + taskCount + ": " + input;
+                writeToTextFile(numberedInput);
+                taskCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeToTextFile(String text) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true))) {
+            writer.write(text);
+            writer.newLine();
+        }
+    }
+}
+
+
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
