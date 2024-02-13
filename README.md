@@ -3,6 +3,62 @@ import java.util.Scanner;
 public class BubbleSort {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the length of the array: ");
+        if (!scanner.hasNextInt()) {
+            System.out.println("Error: Invalid input!");
+            return;
+        }
+        int length = scanner.nextInt();
+
+        int[] arr = new int[length];
+
+        System.out.printf("Enter %d numbers for the array:\n", length);
+        for (int i = 0; i < length; i++) {
+            if (!scanner.hasNextInt()) {
+                System.out.println("Error: Invalid input!");
+                return;
+            }
+            arr[i] = scanner.nextInt();
+        }
+
+        if (arr.length != length) {
+            System.out.println("Error: Length mismatch!");
+            return;
+        }
+
+        bubbleSort(arr);
+
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         
         System.out.print("Введите длину массива: ");
         if (scanner.hasNextInt()) {
