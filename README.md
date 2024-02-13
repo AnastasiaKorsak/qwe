@@ -1,3 +1,94 @@
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        // Создаем объект Scanner для чтения ввода пользователя
+        Scanner scanner = new Scanner(System.in);
+
+        // Запрашиваем у пользователя количество чисел в массиве
+        System.out.print("Введите количество чисел в массиве: ");
+        int length;
+        if (scanner.hasNextInt()) {
+            length = scanner.nextInt();
+        } else {
+            System.out.println("Ошибка! Введите число.");
+            return;
+        }
+
+        // Проверяем, что введенное значение длины массива положительное
+        if (length <= 0) {
+            System.out.println("Ошибка! Введите положительное число.");
+            return;
+        }
+
+        // Создаем массив для хранения чисел
+        int[] array = new int[length];
+
+        // Запрашиваем у пользователя числа для заполнения массива
+        System.out.println("Введите числа для заполнения массива:");
+        for (int i = 0; i < length; i++) {
+            if (scanner.hasNextInt()) {
+                array[i] = scanner.nextInt();
+            } else {
+                System.out.println("Ошибка! Введите число.");
+                return;
+            }
+        }
+
+        // Проверяем, что не осталось лишних чисел после заполнения массива
+        if (scanner.hasNext()) {
+            System.out.println("Ошибка! Лишние числа во вводе.");
+            return;
+        }
+
+        // Сортировка пузырьком
+        bubbleSort(array);
+
+        // Запись отсортированного массива в текстовый файл
+        writeArrayToFile(array);
+
+        System.out.println("Массив успешно отсортирован и сохранен в файл.");
+    }
+
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (array[j] > array[j+1]) {
+                    // меняем элементы местами
+                    int temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void writeArrayToFile(int[] array) {
+        try {
+            // Создаем объект FileWriter с указанием имени файла
+            FileWriter writer = new FileWriter("sorted_array.txt", true);
+
+            // Записываем каждый элемент массива в файл
+            for (int i = 0; i < array.length; i++) {
+                writer.write(String.valueOf(array[i]));
+                writer.write(" ");
+            }
+            writer.write("\n");
+
+            // Закрываем объект FileWriter
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
 try {
             // Создаем объект FileWriter с указанием имени файла
             FileWriter writer = new FileWriter("sorted_array.txt", true);
