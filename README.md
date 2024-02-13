@@ -1,3 +1,60 @@
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                System.out.print("Введите длину массива: ");
+                int length = scanner.nextInt();
+                scanner.nextLine(); // Чтение символа новой строки после ввода числа
+
+                if (length <= 0) {
+                    throw new IllegalArgumentException("Длина массива должна быть больше нуля");
+                }
+
+                int[] array = new int[length];
+
+                for (int i = 0; i < length; i++) {
+                    System.out.print("Введите число для индекса " + i + ": ");
+                    array[i] = scanner.nextInt();
+                    scanner.nextLine(); // Чтение символа новой строки после ввода числа
+                }
+
+                bubbleSort(array);
+
+                System.out.println("Отсортированный массив: " + Arrays.toString(array));
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Ошибка: введено некорректное значение");
+                scanner.nextLine(); // Сброс буфера сканера
+            } catch (IllegalArgumentException e) {
+                System.out.println("Ошибка: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    // Swap array[j] and array[j+1]
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+
+
+
 import java.util.Scanner;
 
 public class BubbleSort {
