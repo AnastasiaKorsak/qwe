@@ -1,3 +1,24 @@
+try {
+            // Создаем объект FileWriter с указанием имени файла
+            FileWriter writer = new FileWriter("sorted_array.txt", true);
+
+            // Записываем каждый элемент массива в файл
+            for (int i = 0; i < array.length; i++) {
+                writer.write(String.valueOf(array[i]));
+                writer.write(" ");
+            }
+            writer.write("\n");
+
+            // Закрываем объект FileWriter
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
