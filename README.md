@@ -1,3 +1,57 @@
+import java.util.Scanner;
+
+public class BubbleSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Введите длину массива: ");
+        if (scanner.hasNextInt()) {
+            int length = scanner.nextInt();
+            if (length >= 0) {
+                int[] array = new int[length];
+                
+                System.out.println("Введите элементы массива:");
+                for (int i = 0; i < length; i++) {
+                    if (scanner.hasNextInt()) {
+                        array[i] = scanner.nextInt();
+                    } else {
+                        System.out.println("Ошибка: введено некорректное число");
+                        return;
+                    }
+                }
+                
+                bubbleSort(array);
+                
+                System.out.println("Отсортированный массив:");
+                for (int num : array) {
+                    System.out.print(num + " ");
+                }
+            } else {
+                System.out.println("Ошибка: некорректная длина массива");
+            }
+        } else {
+            System.out.println("Ошибка: введена некорректная длина массива");
+        }
+    }
+    
+    public static void bubbleSort(int[] array) {
+        int length = array.length;
+        
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+
+
+
 try {
     int number = Integer.parseInt(yourString);
 
