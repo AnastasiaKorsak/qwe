@@ -1,3 +1,48 @@
+public class TwoDimensionalArray {
+  
+    public static int determinant(int[][] matrix) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        if (rows != columns) {
+            System.out.println("Error: Matrix is not square.");
+            return 0;
+        }
+
+        if (rows == 1) {
+            return matrix[0][0];
+        }
+
+        if (rows == 2) {
+            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+        }
+
+        int det = 0;
+        for (int i = 0; i < rows; i++) {
+            int[][] subMatrix = new int[rows - 1][columns - 1];
+            for (int j = 1; j < rows; j++) {
+                for (int k = 0; k < columns; k++) {
+                    if (k < i) {
+                        subMatrix[j - 1][k] = matrix[j][k];
+                    } else if (k > i) {
+                        subMatrix[j - 1][k - 1] = matrix[j][k];
+                    }
+                }
+            }
+            det += Math.pow(-1, i) * matrix[0][i] * determinant(subMatrix);
+        }
+        return det;
+    }
+
+    public static void main(String[] args) {
+        // Your existing code for inputting matrix elements and printing the matrix
+
+        // Calculate and print the determinant of the matrix
+        System.out.println("The determinant of the matrix is: " + determinant(matrix));
+    }
+}
+
+
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
