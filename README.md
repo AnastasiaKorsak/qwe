@@ -1,3 +1,52 @@
+```java
+public class MatrixDeterminant {
+    
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        
+        int determinant = calculateDeterminant(matrix);
+        
+        System.out.println("Determinant of the matrix is: " + determinant);
+    }
+    
+    public static int calculateDeterminant(int[][] matrix) {
+        int determinant = 0;
+        
+        if(matrix.length == 2) {
+            determinant = matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0];
+        } else {
+            for(int i = 0; i < matrix.length; i++) {
+                determinant += Math.pow(-1, i) * matrix[0][i] * calculateDeterminant(getSubMatrix(matrix, 0, i));
+            }
+        }
+        
+        return determinant;
+    }
+    
+    public static int[][] getSubMatrix(int[][] matrix, int row, int col) {
+        int size = matrix.length - 1;
+        int[][] subMatrix = new int[size][size];
+        
+        int r = 0, c = 0;
+        for(int i = 0; i < matrix.length; i++) {
+            if(i == row) continue;
+            for(int j = 0; j < matrix.length; j++) {
+                if(j == col) continue;
+                subMatrix[r][c] = matrix[i][j];
+                c++;
+            }
+            r++;
+            c = 0;
+        }
+        
+        return subMatrix;
+    }
+}
+```
+
+
+
+
 public class TwoDimensionalArray {
   
     public static int determinant(int[][] matrix) {
