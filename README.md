@@ -1,3 +1,53 @@
+import java.util.InputMismatchException;
+
+public class TwoDimensionalArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter number of rows: ");
+        int rows = 0;
+        try {
+            rows = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Please enter a valid number.");
+            return;
+        }
+        
+        System.out.print("Enter number of columns: ");
+        int columns = 0;
+        try {
+            columns = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Please enter a valid number.");
+            return;
+        }
+        
+        int[][] matrix = new int[rows][columns];
+        
+        System.out.println("Enter elements of the matrix: ");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                try {
+                    matrix[i][j] = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Please enter a valid number.");
+                    return;
+                }
+            }
+        }
+        
+        System.out.println("The matrix is: ");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
 // Нормализация матрицы от меньшего
 int min = matrix[0][0];
 for (int i = 0; i < rows; i++) {
