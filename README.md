@@ -1,3 +1,22 @@
+// Нормализация матрицы от меньшего
+int min = matrix[0][0];
+for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < columns; j++) {
+        if (matrix[i][j] < min) {
+            min = matrix[i][j];
+        }
+    }
+}
+
+System.out.println("Normalized matrix from smallest element: ");
+for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < columns; j++) {
+        System.out.print((matrix[i][j] - min) + " ");
+    }
+    System.out.println();
+}
+
+
 import java.util.Scanner;
 
 public class TwoDimensionalArray {
