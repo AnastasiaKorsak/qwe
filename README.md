@@ -1,3 +1,49 @@
+```java
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class BuildingMaterialStore {
+    private int ID;
+    private String name;
+    private String description;
+    private double price;
+    private int number;
+    private int numberCard;
+    private int idCard;
+
+    public BuildingMaterialStore(int ID, String name, String description, double price, int number, int numberCard, int idCard) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.number = number;
+        this.numberCard = numberCard;
+        this.idCard = idCard;
+    }
+
+    @Override
+    public String toString() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        BuildingMaterialStore store = new BuildingMaterialStore(1, "Building Supplies", "Various materials for construction", 100.0, 50, 1234, 5678);
+        System.out.println(store.toString());
+    }
+}
+```
+
+
+
+
+
+
 import java.util.Scanner;
 
 public class MatrixDeterminant {
