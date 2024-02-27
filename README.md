@@ -1,3 +1,77 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Scanner;
+
+class StoreMaterial {
+    private int ID;
+    private String name;
+    private String description;
+    private double price;
+    private int number;
+    private int numberCard;
+    private int idCard;
+
+    public StoreMaterial(int ID, String name, String description, double price, int number, int numberCard, int idCard) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.number = number;
+        this.numberCard = numberCard;
+        this.idCard = idCard;
+    }
+
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        StoreMaterial material1 = new StoreMaterial(1, "Bricks", "Red bricks for construction", 10.0, 100, 12345, 54321);
+        StoreMaterial material2 = new StoreMaterial(2, "Cement", "High quality cement", 15.0, 50, 54321, 12345);
+
+        System.out.println("Available materials:");
+        System.out.println("1. " + material1.toString());
+        System.out.println("2. " + material2.toString());
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the ID of the material you want to order: ");
+        int chosenMaterialID = scanner.nextInt();
+
+        System.out.print("Enter the quantity of the material you want to order: ");
+        int quantity = scanner.nextInt();
+
+        if (chosenMaterialID == 1) {
+            material1.number -= quantity;
+        } else if (chosenMaterialID == 2) {
+            material2.number -= quantity;
+        }
+
+        System.out.println("Order details:");
+        if (chosenMaterialID == 1) {
+            System.out.println("Ordered material: " + material1.name);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Total Price: " + (material1.price * quantity));
+        } else if (chosenMaterialID == 2) {
+            System.out.println("Ordered material: " + material2.name);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Total Price: " + (material2.price * quantity));
+        }
+    }
+}
+
+
+
+
+
+
 ```java
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
