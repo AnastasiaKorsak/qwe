@@ -1,4 +1,57 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> books = new ArrayList<>();
+
+        while (true) {
+            System.out.println("1. Посчитать все книги");
+            System.out.println("2. Добавить книгу");
+            System.out.println("3. Удалить книгу");
+            System.out.println("4. Выйти");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Общее количество книг: " + books.size());
+                    break;
+                case 2:
+                    System.out.print("Введите название книги: ");
+                    String newBook = scanner.next();
+                    books.add(newBook);
+                    System.out.println("Книга добавлена");
+                    break;
+                case 3:
+                    System.out.print("Введите номер книги для удаления: ");
+                    int bookIndex = scanner.nextInt();
+                    if (bookIndex >= 0 && bookIndex < books.size()) {
+                        String removedBook = books.remove(bookIndex);
+                        System.out.println("Книга " + removedBook + " удалена");
+                    } else {
+                        System.out.println("Книги с таким номером не существует");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Выход из программы");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Некорректный выбор");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
