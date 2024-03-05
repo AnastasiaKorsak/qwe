@@ -1,3 +1,146 @@
+```java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+// Сущность Книга
+class Book {
+    private Long id;
+    private String name;
+    private String description;
+    private String isdn;
+    private double price;
+    private double discount;
+    private int number;
+
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String description;
+        private String isdn;
+        private double price;
+        private double discount;
+        private int number;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder setIsdn(String isdn) {
+            this.isdn = isdn;
+            return this;
+        }
+
+        public Builder setPrice(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder setDiscount(double discount) {
+            this.discount = discount;
+            return this;
+        }
+
+        public Builder setNumber(int number) {
+            this.number = number;
+            return this;
+        }
+
+        public Book build() {
+            Book book = new Book();
+            book.id = this.id;
+            book.name = this.name;
+            book.description = this.description;
+            book.isdn = this.isdn;
+            book.price = this.price;
+            book.discount = this.discount;
+            book.number = this.number;
+            return book;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isdn='" + isdn + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", number=" + number +
+                '}';
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Long, Book> bookMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Enter book details for book " + i);
+
+            System.out.print("ID: ");
+            Long id = scanner.nextLong();
+            scanner.nextLine();
+
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Description: ");
+            String description = scanner.nextLine();
+
+            System.out.print("ISBN: ");
+            String isdn = scanner.next();
+            scanner.nextLine();
+
+            System.out.print("Price: ");
+            double price = scanner.nextDouble();
+
+            System.out.print("Discount: ");
+            double discount = scanner.nextDouble();
+
+            System.out.print("Number: ");
+            int number = scanner.nextInt();
+
+            Book book = new Book.Builder()
+                    .setId(id)
+                    .setName(name)
+                    .setDescription(description)
+                    .setIsdn(isdn)
+                    .setPrice(price)
+                    .setDiscount(discount)
+                    .setNumber(number)
+                    .build();
+
+            bookMap.put(book.getId(), book);
+        }
+
+        System.out.println("Book details entered:");
+        for (Map.Entry<Long, Book> entry : bookMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
+    }
+}
+```
+
+
+
+
+
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
