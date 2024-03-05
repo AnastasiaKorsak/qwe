@@ -1,3 +1,109 @@
+import java.util.HashMap;
+import java.util.Map;
+
+// Сущность книги
+class Book {
+    private Long id;
+    private String name;
+    private String description;
+    private String isdn;
+    private double price;
+    private double discount;
+    private int number;
+
+    // Приватный конструктор для использования Builder
+    private Book() {}
+
+    // Builder для создания экземпляра книги
+    static class Builder {
+        private final Book book = new Book();
+
+        public Builder setId(Long id) {
+            book.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            book.name = name;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            book.description = description;
+            return this;
+        }
+
+        public Builder setIsdn(String isdn) {
+            book.isdn = isdn;
+            return this;
+        }
+
+        public Builder setPrice(double price) {
+            book.price = price;
+            return this;
+        }
+
+        public Builder setDiscount(double discount) {
+            book.discount = discount;
+            return this;
+        }
+
+        public Builder setNumber(int number) {
+            book.number = number;
+            return this;
+        }
+
+        public Book build() {
+            return book;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isdn='" + isdn + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", number=" + number +
+                '}';
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Создание базы данных сущностей в виде Map
+        Map<Long, Book> booksMap = new HashMap<>();
+
+        // Добавление минимум 10 сущностей
+        for (int i = 0; i < 10; i++) {
+            Book book = new Book.Builder()
+                    .setId((long) i)
+                    .setName("Book " + i)
+                    .setDescription("Description of Book " + i)
+                    .setIsdn("ISBN " + i)
+                    .setPrice(10.0 + i)
+                    .setDiscount(0.2)
+                    .setNumber(10 + i)
+                    .build();
+
+            booksMap.put(book.id, book);
+        }
+
+        // Вывод информации о всех книгах
+        for (Book book : booksMap.values()) {
+            System.out.println(book);
+        }
+    }
+}
+
+
+
+
+
+
 ```java
 import java.util.HashMap;
 import java.util.Map;
