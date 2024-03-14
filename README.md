@@ -1,3 +1,126 @@
+import java.util.ArrayList;
+
+class Food {
+    private int id;
+    private String name;
+    private String description;
+
+    public Food(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    // Getters and Setters
+}
+
+public class FoodDataStructure {
+    private ArrayList<Food> foods = new ArrayList<>();
+
+    public void addFood(Food food) {
+        foods.add(food);
+    }
+
+    public void addFirst(Food food) {
+        foods.add(0, food);
+    }
+
+    public void addMiddle(Food food) {
+        foods.add(foods.size() / 2, food);
+    }
+
+    public void addLast(Food food) {
+        foods.add(food);
+    }
+
+    public void removeFood(Food food) {
+        foods.remove(food);
+    }
+
+    public void modifyFirst(Food food) {
+        foods.set(0, food);
+    }
+
+    public void modifyMiddle(Food food) {
+        foods.set(foods.size() / 2, food);
+    }
+
+    public void modifyLast(Food food) {
+        foods.set(foods.size() - 1, food);
+    }
+
+    public static void main(String[] args) {
+        FoodDataStructure foodDS = new FoodDataStructure();
+        long startTime, endTime, totalTime;
+
+        // Create and add 100000 entities
+        for (int i = 0; i < 100000; i++) {
+            Food food = new Food(i, "Food" + i, "Description" + i);
+            foodDS.addFood(food);
+        }
+
+        // Test addFirst method
+        Food newFood1 = new Food(100001, "New Food First", "New Description First");
+        startTime = System.currentTimeMillis();
+        foodDS.addFirst(newFood1);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Add First method time: " + totalTime + "ms");
+
+        // Test addMiddle method
+        Food newFood2 = new Food(100002, "New Food Middle", "New Description Middle");
+        startTime = System.currentTimeMillis();
+        foodDS.addMiddle(newFood2);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Add Middle method time: " + totalTime + "ms");
+
+        // Test addLast method
+        Food newFood3 = new Food(100003, "New Food Last", "New Description Last");
+        startTime = System.currentTimeMillis();
+        foodDS.addLast(newFood3);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Add Last method time: " + totalTime + "ms");
+
+        // Test removeFood method
+        startTime = System.currentTimeMillis();
+        foodDS.removeFood(newFood1);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Remove method time: " + totalTime + "ms");
+
+        // Test modifyFirst method
+        Food modifiedFood1 = new Food(100001, "Modified Food First", "Modified Description First");
+        startTime = System.currentTimeMillis();
+        foodDS.modifyFirst(modifiedFood1);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Modify First method time: " + totalTime + "ms");
+
+        // Test modifyMiddle method
+        Food modifiedFood2 = new Food(50000, "Modified Food Middle", "Modified Description Middle");
+        startTime = System.currentTimeMillis();
+        foodDS.modifyMiddle(modifiedFood2);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Modify Middle method time: " + totalTime + "ms");
+
+        // Test modifyLast method
+        Food modifiedFood3 = new Food(100003, "Modified Food Last", "Modified Description Last");
+        startTime = System.currentTimeMillis();
+        foodDS.modifyLast(modifiedFood3);
+        endTime = System.currentTimeMillis();
+        totalTime = endTime - startTime;
+        System.out.println("Modify Last method time: " + totalTime + "ms");
+    }
+}
+
+
+
+
+
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
