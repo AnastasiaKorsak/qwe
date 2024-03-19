@@ -1,4 +1,95 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Plant {
+    private int id;
+    private String name;
+    private String description;
+    private long harvestTime;
+
+    public Plant(int id, String name, String description, long harvestTime) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.harvestTime = harvestTime;
+    }
+
+    public String toString() {
+        return "ID: " + id + ", Name: " + name + ", Description: " + description + ", Harvest Time: " + harvestTime;
+    }
+}
+
+public class GardenerApp {
+    private static List<Plant> plants = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Gardener Menu:");
+            System.out.println("1. View Plants");
+            System.out.println("2. Add Plant");
+            System.out.println("3. Exit");
+
+            int choice = scanner.nextInt();
+
+            switch(choice) {
+                case 1:
+                    viewPlants();
+                    break;
+                case 2:
+                    addPlant();
+                    break;
+                case 3:
+                    System.out.println("Exiting program");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void viewPlants() {
+        if (plants.isEmpty()) {
+            System.out.println("No plants in the garden.");
+        } else {
+            for (Plant plant : plants) {
+                System.out.println(plant);
+            }
+        }
+    }
+
+    private static void addPlant() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter plant ID:");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        System.out.println("Enter plant name:");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter plant description:");
+        String description = scanner.nextLine();
+
+        System.out.println("Enter harvest time:");
+        long harvestTime = scanner.nextLong();
+
+        Plant newPlant = new Plant(id, name, description, harvestTime);
+        plants.add(newPlant);
+
+        System.out.println("Plant added successfully.");
+    }
+}
+
+
+
+
+
+
+import java.util.ArrayList;
 
 class Food {
     private int id;
