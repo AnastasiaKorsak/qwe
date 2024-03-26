@@ -1,3 +1,93 @@
+import java.util.*;
+
+public class Plane {
+    private int id;
+    private String name;
+    private int year;
+
+    public Plane(int id, String name, int year) {
+        this.id = id;
+        this.name = name;
+        this.year = year;
+    }
+
+    public static void main(String[] args) {
+        HashSet<Plane> planes = new HashSet<>();
+        for (int i = 1; i <= 100; i++) {
+            planes.add(new Plane(i, "Plane" + i, 2000 + i));
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("Menu:");
+            System.out.println("1) Sort by name");
+            System.out.println("2) Sort by year of production");
+            System.out.println("3) Filter by name");
+            System.out.println("4) Filter by year");
+            System.out.println("5) Filter by specified year");
+            System.out.println("0) Exit");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    List<Plane> sortedByName = new ArrayList<>(planes);
+                    Collections.sort(sortedByName, Comparator.comparing(Plane::getName));
+                    sortedByName.forEach(System.out::println);
+                    break;
+                case 2:
+                    List<Plane> sortedByYear = new ArrayList<>(planes);
+                    Collections.sort(sortedByYear, Comparator.comparingInt(Plane::getYear));
+                    sortedByYear.forEach(System.out::println);
+                    break;
+                case 3:
+                    System.out.println("Enter name filter:");
+                    String nameFilter = scanner.next();
+                    planes.stream()
+                          .filter(plane -> plane.getName().contains(nameFilter))
+                          .forEach(System.out::println);
+                    break;
+                case 4:
+                    System.out.println("Enter year filter:");
+                    int yearFilter = scanner.nextInt();
+                    planes.stream()
+                          .filter(plane -> plane.getYear() == yearFilter)
+                          .forEach(System.out::println);
+                    break;
+                case 5:
+                    System.out.println("Enter specified year:");
+                    int specifiedYear = scanner.nextInt();
+                    planes.stream()
+                          .filter(plane -> plane.getYear() == specifiedYear)
+                          .forEach(System.out::println);
+                    break;
+            }
+        } while (choice != 0);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", year=" + year +
+                '}';
+    }
+}
+
+
+
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
