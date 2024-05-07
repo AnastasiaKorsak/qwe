@@ -1,3 +1,37 @@
+import org.json.JSONObject
+
+data class Entity(val p1: String, val p2: String, val p3: String, val p4: String, val p5: String)
+
+fun main() {
+    val entity = Entity("value1", "value2", "value3", "value4", "value5")
+
+    // Конвертировать объект Entity в JSON формат
+    val jsonObject = JSONObject()
+    jsonObject.put("p1", entity.p1)
+    jsonObject.put("p2", entity.p2)
+    jsonObject.put("p3", entity.p3)
+    jsonObject.put("p4", entity.p4)
+    jsonObject.put("p5", entity.p5)
+    val json = jsonObject.toString()
+    println(json)
+
+    // Конвертировать JSON обратно в объект Entity
+    val jsonEntity = JSONObject(json)
+    val newEntity = Entity(
+        jsonEntity.getString("p1"),
+        jsonEntity.getString("p2"),
+        jsonEntity.getString("p3"),
+        jsonEntity.getString("p4"),
+        jsonEntity.getString("p5")
+    )
+    println(newEntity)
+}
+
+
+
+
+
+
 Sure! Here's an example of a mobile app in Kotlin that includes an entity class with 5 parameters, serializes it to JSON, and deserializes it back to an object from a file:
 
 ```kotlin
