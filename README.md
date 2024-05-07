@@ -1,3 +1,50 @@
+Код активити MainActivity.kt:
+
+```kotlin
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONObject
+
+data class Entity(val p1: String, val p2: String, val p3: String, val p4: String, val p5: String)
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val entity = Entity("value1", "value2", "value3", "value4", "value5")
+
+        // Конвертировать объект Entity в JSON формат
+        val jsonObject = JSONObject()
+        jsonObject.put("p1", entity.p1)
+        jsonObject.put("p2", entity.p2)
+        jsonObject.put("p3", entity.p3)
+        jsonObject.put("p4", entity.p4)
+        jsonObject.put("p5", entity.p5)
+        val json = jsonObject.toString()
+        println(json)
+
+        // Конвертировать JSON обратно в объект Entity
+        val jsonEntity = JSONObject(json)
+        val newEntity = Entity(
+            jsonEntity.getString("p1"),
+            jsonEntity.getString("p2"),
+            jsonEntity.getString("p3"),
+            jsonEntity.getString("p4"),
+            jsonEntity.getString("p5")
+        )
+        println(newEntity)
+    }
+}
+```
+
+Не забудьте также создать файл layout с названием activity_main.xml для данной активити.
+
+
+
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
