@@ -1,3 +1,147 @@
+Вот пример кода для вашего приложения:
+
+MainActivity.kt:
+
+```kotlin
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val editText1 = findViewById<EditText>(R.id.editText1)
+        val editText2 = findViewById<EditText>(R.id.editText2)
+        val editText3 = findViewById<EditText>(R.id.editText3)
+        val editText4 = findViewById<EditText>(R.id.editText4)
+        val editText5 = findViewById<EditText>(R.id.editText5)
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("param1", editText1.text.toString())
+            intent.putExtra("param2", editText2.text.toString())
+            intent.putExtra("param3", editText3.text.toString())
+            intent.putExtra("param4", editText4.text.toString())
+            intent.putExtra("param5", editText5.text.toString())
+            startActivity(intent)
+        }
+    }
+}
+```
+
+activity_main.xml:
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+
+</LinearLayout>
+```
+
+SecondActivity.kt:
+
+```kotlin
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_second.*
+import org.json.JSONObject
+
+class SecondActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
+
+        val param1 = intent.getStringExtra("param1")
+        val param2 = intent.getStringExtra("param2")
+        val param3 = intent.getStringExtra("param3")
+        val param4 = intent.getStringExtra("param4")
+        val param5 = intent.getStringExtra("param5")
+
+        val jsonObject = JSONObject()
+        jsonObject.put("param1", param1)
+        jsonObject.put("param2", param2)
+        jsonObject.put("param3", param3)
+        jsonObject.put("param4", param4)
+        jsonObject.put("param5", param5)
+
+        textView.text = jsonObject.toString()
+
+        backButton.setOnClickListener {
+            finish()
+        }
+    }
+}
+```
+
+activity_second.xml:
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"/>
+
+</LinearLayout>
+```
+
+Не забудьте создать activity_main.xml и activity_second.xml layout файлы и добавить их в папку res/layout вашего проекта.
+
+
+
+
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
