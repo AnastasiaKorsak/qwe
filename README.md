@@ -1,3 +1,37 @@
+Sure! Here's an example of a mobile app in Kotlin that includes an entity class with 5 parameters, serializes it to JSON, and deserializes it back to an object from a file:
+
+```kotlin
+import com.beust.klaxon.Klaxon
+import java.io.File
+
+data class Entity(val p1: String, val p2: String, val p3: String, val p4: String, val p5: String)
+
+fun main() {
+    // Creating an instance of the Entity class
+    val entity = Entity("value1", "value2", "value3", "value4", "value5")
+
+    // Serializing the entity to JSON
+    val json = Klaxon().toJsonString(entity)
+    println(json)
+
+    // Writing the JSON to a file
+    File("entity.json").writeText(json)
+
+    // Reading the JSON from the file and deserializing it back to an object
+    val jsonFromFile = File("entity.json").readText()
+    val entityFromFile = Klaxon().parse<Entity>(jsonFromFile)
+    
+    println(entityFromFile)
+}
+```
+
+In this code snippet, we define an `Entity` data class with 5 parameters (`p1`, `p2`, `p3`, `p4`, `p5`). We then create an instance of the `Entity` class, serialize it to JSON using the `Klaxon` library, and print the JSON string. We also write the JSON string to a file named `entity.json`.
+
+Next, we read the JSON string from the file, deserialize it back to an `Entity` object, and print the object. This demonstrates how to convert an object to JSON and back using Kotlin and the `Klaxon` library.
+
+
+
+
 import java.util.*;
 
 public class Plane {
