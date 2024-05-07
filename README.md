@@ -1,3 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/jsonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="JSON Output"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/entityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entity Output"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/jsonTextView"
+        android:layout_marginStart="16dp"/>
+
+</RelativeLayout>
+
+
+
 import org.json.JSONObject
 
 data class Entity(val p1: String, val p2: String, val p3: String, val p4: String, val p5: String)
